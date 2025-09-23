@@ -27,7 +27,7 @@ jobs:
               id: meta
               uses: docker/metadata-action@v5
               with:
-                  images: ${{ secrets.DOCKER_USERNAME }}/acquisitions-app
+                  images: ${{ secrets.DOCKER_USERNAME }}/devops-kubernetes-api
                   tags: |
                       type=ref,event=branch
                       type=sha,prefix={{branch}}-
@@ -59,7 +59,7 @@ jobs:
                   echo "" >> $GITHUB_STEP_SUMMARY
                   echo "### Published Image" >> $GITHUB_STEP_SUMMARY
                   echo "" >> $GITHUB_STEP_SUMMARY
-                  echo "**Repository:** \`${{ secrets.DOCKER_USERNAME }}/acquisitions\`" >> $GITHUB_STEP_SUMMARY
+                  echo "**Repository:** \`${{ secrets.DOCKER_USERNAME }}/devops-kubernetes-api\`" >> $GITHUB_STEP_SUMMARY
                   echo "" >> $GITHUB_STEP_SUMMARY
                   echo "### Tags:" >> $GITHUB_STEP_SUMMARY
                   echo "" >> $GITHUB_STEP_SUMMARY
@@ -77,7 +77,7 @@ jobs:
                   echo "" >> $GITHUB_STEP_SUMMARY
                   echo "### Pull Command:" >> $GITHUB_STEP_SUMMARY
                   echo "\`\`\`bash" >> $GITHUB_STEP_SUMMARY
-                  echo "docker pull ${{ secrets.DOCKER_USERNAME }}/acquisitions:latest" >> $GITHUB_STEP_SUMMARY
+                  echo "docker pull ${{ secrets.DOCKER_USERNAME }}/devops-kubernetes-api:latest" >> $GITHUB_STEP_SUMMARY
                   echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
                   echo "" >> $GITHUB_STEP_SUMMARY
                   echo "✅ **Build Status:** Success" >> $GITHUB_STEP_SUMMARY
