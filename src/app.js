@@ -1,6 +1,7 @@
 import express from 'express';
 import logger from '#config/logger.js';
 import authRoutes from '#routes/auth.routes.js';
+import usersRouter from '#routes/users.routes.js';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import cors from 'cors';
@@ -32,5 +33,6 @@ app.get('/api', (req, res) => {
 });
 
 app.use('/api/auth', authRoutes);
+app.use('/api/users', usersRouter);
 
 export default app; 
