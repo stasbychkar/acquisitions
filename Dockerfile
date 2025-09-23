@@ -49,8 +49,8 @@ COPY --from=deps /app/node_modules ./node_modules
 # Copy source code
 COPY . .
 
-# Run any build steps if needed (linting, etc.)
-RUN npm run lint
+# Note: Linting is handled by CI/CD pipeline separately
+# No build steps needed for this Node.js application
 
 # Production stage
 FROM node:20-alpine AS production
