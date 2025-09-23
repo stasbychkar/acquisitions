@@ -64,3 +64,24 @@
 {"level":"info","message":"::1 - - [22/Sep/2025:22:52:17 +0000] \"GET /health HTTP/1.1\" 200 76 \"-\" \"HTTPie\"","service":"acquisitions-api"}
 {"ip":"::1","level":"warn","message":"Rate limit exceeded","method":"GET","path":"/health","service":"acquisitions-api","userAgent":"HTTPie"}
 {"level":"info","message":"::1 - - [22/Sep/2025:22:52:18 +0000] \"GET /health HTTP/1.1\" 403 51 \"-\" \"HTTPie\"","service":"acquisitions-api"}
+{"level":"info","message":"::1 - - [23/Sep/2025:00:13:40 +0000] \"POST /sign-up HTTP/1.1\" 404 147 \"-\" \"HTTPie\"","service":"acquisitions-api"}
+{"level":"info","message":"::1 - - [23/Sep/2025:00:13:49 +0000] \"POST /api/sign-up HTTP/1.1\" 404 151 \"-\" \"HTTPie\"","service":"acquisitions-api"}
+{"level":"info","message":"User stas@stas.com created successfully","service":"acquisitions-api"}
+{"level":"info","message":"User registered successfully: stas@stas.com","service":"acquisitions-api"}
+{"level":"info","message":"::1 - - [23/Sep/2025:00:15:32 +0000] \"POST /api/auth/sign-up HTTP/1.1\" 201 97 \"-\" \"HTTPie\"","service":"acquisitions-api"}
+{"level":"info","message":"User stas@stas.com authenticated successfully","service":"acquisitions-api"}
+{"level":"info","message":"User signed in successfully: stas@stas.com","service":"acquisitions-api"}
+{"level":"info","message":"::1 - - [23/Sep/2025:00:15:49 +0000] \"POST /api/auth/sign-in HTTP/1.1\" 200 109 \"-\" \"HTTPie\"","service":"acquisitions-api"}
+{"level":"info","message":"User signed out successfully","service":"acquisitions-api"}
+{"level":"info","message":"::1 - - [23/Sep/2025:00:16:36 +0000] \"POST /api/auth/sign-out HTTP/1.1\" 200 42 \"-\" \"HTTPie\"","service":"acquisitions-api"}
+{"level":"info","message":"User stas@stas.com authenticated successfully","service":"acquisitions-api"}
+{"level":"info","message":"User signed in successfully: stas@stas.com","service":"acquisitions-api"}
+{"level":"info","message":"::1 - - [23/Sep/2025:00:16:47 +0000] \"POST /api/auth/sign-in HTTP/1.1\" 200 109 \"-\" \"HTTPie\"","service":"acquisitions-api"}
+{"level":"error","message":"Error creating the user: Error: User with this email already exists","service":"acquisitions-api"}
+{"level":"error","message":"Signup error User with this email already exists","service":"acquisitions-api","stack":"Error: User with this email already exists\n    at createUser (file:///Users/stanislav.bychkar/Documents/Courses/DevOps%20(JSM)/acquisitions/src/services/auth.service.js:58:33)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async signup (file:///Users/stanislav.bychkar/Documents/Courses/DevOps%20(JSM)/acquisitions/src/controllers/auth.controller.js:22:22)"}
+{"level":"info","message":"::1 - - [23/Sep/2025:00:17:01 +0000] \"POST /api/auth/sign-up HTTP/1.1\" 409 32 \"-\" \"HTTPie\"","service":"acquisitions-api"}
+{"level":"info","message":"User signed out successfully","service":"acquisitions-api"}
+{"level":"info","message":"::1 - - [23/Sep/2025:00:17:11 +0000] \"POST /api/auth/sign-out HTTP/1.1\" 200 42 \"-\" \"HTTPie\"","service":"acquisitions-api"}
+{"level":"info","message":"User stas@stas.com authenticated successfully","service":"acquisitions-api"}
+{"level":"info","message":"User signed in successfully: stas@stas.com","service":"acquisitions-api"}
+{"level":"info","message":"::1 - - [23/Sep/2025:00:17:29 +0000] \"POST /api/auth/sign-in HTTP/1.1\" 200 109 \"-\" \"HTTPie\"","service":"acquisitions-api"}
