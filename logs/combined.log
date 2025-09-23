@@ -459,3 +459,6 @@
 {"level":"info","message":"::ffff:192.168.65.1 - - [23/Sep/2025:17:50:47 +0000] \"GET /api/users HTTP/1.1\" 200 630 \"-\" \"HTTPie\"","service":"acquisitions-api"}
 {"level":"info","message":"::1 - - [23/Sep/2025:17:51:03 +0000] \"GET /health HTTP/1.1\" 200 77 \"-\" \"Wget\"","service":"acquisitions-api"}
 {"level":"info","message":"::1 - - [23/Sep/2025:17:51:33 +0000] \"GET /health HTTP/1.1\" 200 77 \"-\" \"Wget\"","service":"acquisitions-api"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [23/Sep/2025:18:26:03 +0000] \"GET /health HTTP/1.1\" 200 72 \"-\" \"-\"","service":"acquisitions-api"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [23/Sep/2025:18:26:03 +0000] \"GET /api HTTP/1.1\" 200 42 \"-\" \"-\"","service":"acquisitions-api"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [23/Sep/2025:18:26:03 +0000] \"GET /nonexistent HTTP/1.1\" 404 27 \"-\" \"-\"","service":"acquisitions-api"}
