@@ -23,48 +23,53 @@ A secure Node.js authentication API built with Express, featuring advanced secur
 ### Development Setup (with Neon Local)
 
 1. **Clone and setup environment**:
-   ```bash
-   git clone <repository-url>
-   cd acquisitions
-   cp .env.development .env
-   ```
+
+    ```bash
+    git clone <repository-url>
+    cd acquisitions
+    cp .env.development .env
+    ```
 
 2. **Configure Neon credentials**:
-   ```bash
-   # Edit .env and add your Neon credentials:
-   NEON_API_KEY=your_neon_api_key_here
-   NEON_PROJECT_ID=your_neon_project_id_here  
-   PARENT_BRANCH_ID=your_parent_branch_id_here
-   ARCJET_KEY=your_arcjet_key_here
-   ```
+
+    ```bash
+    # Edit .env and add your Neon credentials:
+    NEON_API_KEY=your_neon_api_key_here
+    NEON_PROJECT_ID=your_neon_project_id_here
+    PARENT_BRANCH_ID=your_parent_branch_id_here
+    ARCJET_KEY=your_arcjet_key_here
+    ```
 
 3. **Start development environment**:
-   ```bash
-   npm run docker:dev
-   ```
+    ```bash
+    npm run docker:dev
+    ```
 
 This will:
+
 - Start Neon Local proxy (creates ephemeral database branch)
 - Build and run the application in development mode
 - Enable hot reloading for code changes
 - Make the API available at `http://localhost:3000`
 
 4. **Verify it's working**:
-   ```bash
-   curl http://localhost:3000/health
-   ```
+
+    ```bash
+    curl http://localhost:3000/health
+    ```
 
 5. **Stop development environment**:
-   ```bash
-   npm run docker:dev:down
-   ```
+    ```bash
+    npm run docker:dev:down
+    ```
 
 ## 🔧 Environment Configuration
 
 ### Development (.env.development)
+
 ```env
 # Server
-NODE_ENV=development  
+NODE_ENV=development
 PORT=3000
 LOG_LEVEL=debug
 
@@ -73,7 +78,7 @@ DATABASE_URL=postgres://neon:npg@neon-local:5432/neondb?sslmode=require
 
 # Neon Local Config
 NEON_API_KEY=your_neon_api_key
-NEON_PROJECT_ID=your_neon_project_id  
+NEON_PROJECT_ID=your_neon_project_id
 PARENT_BRANCH_ID=your_parent_branch_id
 
 # Security
@@ -82,10 +87,11 @@ ARCJET_KEY=your_arcjet_key
 ```
 
 ### Production (.env.production)
+
 ```env
 # Server
 NODE_ENV=production
-PORT=3000  
+PORT=3000
 LOG_LEVEL=info
 
 # Database - Neon Cloud
@@ -98,63 +104,69 @@ ARCJET_KEY=your_arcjet_production_key
 
 ## 🐳 Docker Commands
 
-| Command | Description |
-|---------|-------------|
-| `npm run docker:dev` | Start development with Neon Local |
-| `npm run docker:dev:down` | Stop development and cleanup volumes |
-| `npm run docker:prod` | Start production (detached) |
-| `npm run docker:prod:down` | Stop production |
-| `npm run docker:build:dev` | Build development image only |
-| `npm run docker:build:prod` | Build production image only |
+| Command                     | Description                          |
+| --------------------------- | ------------------------------------ |
+| `npm run docker:dev`        | Start development with Neon Local    |
+| `npm run docker:dev:down`   | Stop development and cleanup volumes |
+| `npm run docker:prod`       | Start production (detached)          |
+| `npm run docker:prod:down`  | Stop production                      |
+| `npm run docker:build:dev`  | Build development image only         |
+| `npm run docker:build:prod` | Build production image only          |
 
 ## 🌍 Development vs Production
 
 ### Development Environment
+
 - **Database**: Neon Local proxy creates ephemeral branches
 - **Benefits**:
-  - Fresh database on each restart
-  - No need to manage connection strings  
-  - Automatic cleanup when containers stop
-  - Hot reloading enabled
-  - Debug logging enabled
-  - Relaxed security for development
+    - Fresh database on each restart
+    - No need to manage connection strings
+    - Automatic cleanup when containers stop
+    - Hot reloading enabled
+    - Debug logging enabled
+    - Relaxed security for development
 
-### Production Environment  
+### Production Environment
+
 - **Database**: Direct connection to Neon Cloud
 - **Features**:
-  - Multi-stage Docker builds for optimization
-  - Non-root user for security
-  - Health checks and restart policies
-  - Resource limits and logging rotation
-  - Production-grade security headers
-  - Optional Nginx reverse proxy
+    - Multi-stage Docker builds for optimization
+    - Non-root user for security
+    - Health checks and restart policies
+    - Resource limits and logging rotation
+    - Production-grade security headers
+    - Optional Nginx reverse proxy
 
 ## 📡 API Endpoints
 
 ### Authentication
+
 - `POST /api/auth/sign-up` - User registration
-- `POST /api/auth/sign-in` - User login  
+- `POST /api/auth/sign-in` - User login
 - `POST /api/auth/sign-out` - User logout
 
 ### System
+
 - `GET /health` - Health check
 - `GET /api` - API status
 
 ### Example Usage
 
 **Register a user**:
+
 ```bash
 curl -X POST http://localhost:3000/api/auth/sign-up \
   -H "Content-Type: application/json" \
   -d '{
     "name": "John Doe",
-    "email": "john@example.com", 
+    "email": "john@example.com",
     "password": "securepass123",
     "role": "user"
   }'
 ```
 
 **Login**:
+
 ```bash
 curl -X POST http://localhost:3000/api/auth/sign-in \
   -H "Content-Type: application/json" \
@@ -168,9 +180,9 @@ curl -X POST http://localhost:3000/api/auth/sign-in \
 
 - **Arcjet Integration**: Advanced bot detection and rate limiting
 - **Role-based Rate Limits**:
-  - Guest: 5 requests/minute
-  - User: 10 requests/minute  
-  - Admin: 20 requests/minute
+    - Guest: 5 requests/minute
+    - User: 10 requests/minute
+    - Admin: 20 requests/minute
 - **JWT Authentication**: HTTP-only secure cookies
 - **Password Hashing**: bcrypt with salt rounds
 - **Security Headers**: Helmet.js integration
@@ -179,9 +191,11 @@ curl -X POST http://localhost:3000/api/auth/sign-in \
 ## 🗄️ Database
 
 ### Schema
+
 - **Users Table**: id, name, email, password, role, timestamps
 
 ### Migrations
+
 ```bash
 # Generate migration
 npm run db:generate
@@ -196,17 +210,20 @@ npm run db:studio
 ## 🔍 Monitoring & Logging
 
 ### Health Checks
+
 - Application: `GET /health`
 - Docker health checks configured for both services
 - Automatic restarts on failure
 
 ### Logging
+
 - **Development**: Console + file logging (debug level)
-- **Production**: Structured JSON logging (info level) 
+- **Production**: Structured JSON logging (info level)
 - **Log Files**: `logs/error.log`, `logs/combined.log`
 - **HTTP Requests**: Morgan middleware integration
 
 ### Log Rotation (Production)
+
 - Max size: 10MB per file
 - Keep 3 files maximum
 - JSON format for log aggregation
@@ -216,23 +233,26 @@ npm run db:studio
 ### Production Deployment
 
 1. **Prepare environment variables**:
-   ```bash
-   export DATABASE_URL="postgresql://user:password@your-neon-url..."
-   export JWT_SECRET="your-super-secure-jwt-secret"
-   export ARCJET_KEY="your-production-arcjet-key"
-   ```
+
+    ```bash
+    export DATABASE_URL="postgresql://user:password@your-neon-url..."
+    export JWT_SECRET="your-super-secure-jwt-secret"
+    export ARCJET_KEY="your-production-arcjet-key"
+    ```
 
 2. **Deploy**:
-   ```bash
-   npm run docker:prod
-   ```
+
+    ```bash
+    npm run docker:prod
+    ```
 
 3. **Verify deployment**:
-   ```bash
-   curl http://localhost:3000/health
-   ```
+    ```bash
+    curl http://localhost:3000/health
+    ```
 
 ### Cloud Deployment (AWS/GCP/Azure)
+
 - Use the production Dockerfile target
 - Set environment variables via cloud secrets management
 - Configure load balancer health checks to `/health`
@@ -255,17 +275,20 @@ npm run format
 ## ⚠️ Environment Variables Reference
 
 ### Required for Development
+
 - `NEON_API_KEY`: Your Neon API key
 - `NEON_PROJECT_ID`: Your Neon project ID
 - `PARENT_BRANCH_ID`: Parent branch for ephemeral branches
 - `ARCJET_KEY`: Arcjet security key
 
-### Required for Production  
+### Required for Production
+
 - `DATABASE_URL`: Full Neon Cloud connection string
 - `JWT_SECRET`: Secure JWT signing key
 - `ARCJET_KEY`: Arcjet production key
 
 ### Optional
+
 - `PORT`: Server port (default: 3000)
 - `LOG_LEVEL`: Logging level (default: info)
 - `JWT_EXPIRES_IN`: Token expiration (default: 1d)
