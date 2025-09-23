@@ -1,0 +1,51 @@
+name: Test Docker Authentication
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test-auth:
+    name: Test Docker Hub Authentication
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Debug - Check secrets are available
+        run: |
+          echo "DOCKER_USERNAME exists: ${{ secrets.DOCKER_USERNAME != '' }}"
+          echo "DOCKER_PASSWORD exists: ${{ secrets.DOCKER_PASSWORD != '' }}"
+          echo "Username length: ${#USERNAME}"
+          echo "Password length: ${#PASSWORD}"
+        env:
+          USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+          
+      - name: Test Docker Hub login
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          
+      - name: Test repository access
+        run: |
+          echo "Testing if repository exists..."
+          docker pull ${{ secrets.DOCKER_USERNAME }}/devops-kubernetes-api:latest || echo "Repository doesn't have latest tag yet (this is normal for new repos)"
+          
+      - name: Test push permissions with a simple tag
+        run: |
+          echo "Creating a test image..."
+          echo 'FROM alpine:latest' > Dockerfile.test
+          echo 'CMD ["echo", "test"]' >> Dockerfile.test
+          
+          docker build -f Dockerfile.test -t ${{ secrets.DOCKER_USERNAME }}/devops-kubernetes-api:test-auth .
+          docker push ${{ secrets.DOCKER_USERNAME }}/devops-kubernetes-api:test-auth
+          
+          echo "✅ Test push successful!"
+          
+      - name: Cleanup test image
+        if: always()
+        run: |
+          docker rmi ${{ secrets.DOCKER_USERNAME }}/devops-kubernetes-api:test-auth || true
+          rm -f Dockerfile.test
